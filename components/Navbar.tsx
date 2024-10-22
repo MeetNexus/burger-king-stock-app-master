@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { FiHome, FiUpload, FiBox, FiShoppingCart } from 'react-icons/fi'
+import { FiHome, FiBox, FiShoppingCart } from 'react-icons/fi'
 
 export default function Navbar() {
   return (
@@ -15,11 +15,6 @@ export default function Navbar() {
         <li className="flex items-center hover:text-xl hover:font-semibold">
           <FiHome className="text-bk-brown mr-1" />
           <Link href="/" className="text-bk-brown font-normal">Accueil
-          </Link>
-        </li>
-        <li className="flex items-center hover:text-xl hover:font-semibold">
-          <FiUpload className="text-bk-brown mr-1" />
-          <Link href="/import" className="text-bk-brown font-normal">Importation
           </Link>
         </li>
         <li className="flex items-center hover:text-xl hover:font-semibold">
