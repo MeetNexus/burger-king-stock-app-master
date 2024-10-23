@@ -54,7 +54,7 @@ export default function UnitConversionModal({
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-1">Nombre d'unités par sachet :</label>
+          <label className="block mb-1">Nombre d&apos;unités par sachet :</label>
           <input
             type="number"
             value={unitsPerPack}
