@@ -1,4 +1,9 @@
 // types/interfaces.ts
+export interface UnitConversion {
+  number_of_packs: number;
+  units_per_pack: number;
+  unit: string;
+}
 
 export interface Product {
   id?: number
@@ -7,6 +12,7 @@ export interface Product {
   unite_stock: string
   code_destination: string
   is_hidden: boolean
+  unit_conversion?: UnitConversion
   // ... autres champs si nécessaire
 }
 
