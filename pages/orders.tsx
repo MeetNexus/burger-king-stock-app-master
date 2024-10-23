@@ -313,7 +313,7 @@ export default function OrdersPage() {
 
       <Card className="mt-4">
         <h2 className="text-lg text-center text-bk-brown font-bold">
-          Prévisions de Chiffre d'Affaires
+          Prévisions de Chiffre d&apos;Affaires
         </h2>
         <table className="mt-2 w-full border-collapse bg-white">
           <thead>
