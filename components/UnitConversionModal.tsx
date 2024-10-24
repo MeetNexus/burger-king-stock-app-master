@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useStore } from '../stores/useStore'
 import { Product } from '../types/interfaces'
+import { updateProduct } from '../services/productService';
 
 interface UnitConversionModalProps {
   product: Product
@@ -22,21 +23,32 @@ export default function UnitConversionModal({
   const setProducts = useStore((state) => state.setProducts)
   const products = useStore((state) => state.products)
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const updatedProduct: Product = {
       ...product,
       unit_conversion: {
         number_of_packs: numberOfPacks,
         units_per_pack: unitsPerPack,
-        unit: product.unite_stock, // 'unite_stock' correspond à votre interface
+        unit: product.unite_stock, // Assurez-vous que 'unite_stock' est correct
       },
+    };
+  
+    try {
+      // Mettre à jour le produit dans la base de données
+      const savedProduct = await updateProduct(updatedProduct);
+  
+      // Mettre à jour le state local avec le produit mis à jour
+      const updatedProducts = products.map((p) =>
+        p.id === savedProduct.id ? savedProduct : p
+      );
+      setProducts(updatedProducts);
+  
+      onClose();
+    } catch (error) {
+      console.error('Erreur lors de la sauvegarde du produit :', error);
+      // Vous pouvez afficher un message d'erreur à l'utilisateur ici
     }
-    const updatedProducts = products.map((p) =>
-      p.reference_produit === product.reference_produit ? updatedProduct : p
-    )
-    setProducts(updatedProducts)
-    onClose()
-  }
+  };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">

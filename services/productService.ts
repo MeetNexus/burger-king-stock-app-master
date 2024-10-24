@@ -50,16 +50,20 @@ export async function getProductById(id: number): Promise<Product | null> {
 }
 
 
-export async function updateProduct(product: Product): Promise<void> {
-  const { error } = await supabase
+export async function updateProduct(product: Product): Promise<Product> {
+  const { data, error } = await supabase
     .from('products')
     .update(product)
     .eq('id', product.id)
+    .select()
+    .single();
 
   if (error) {
-    console.error('Erreur lors de la mise à jour du produit :', error)
-    throw error
+    console.error('Erreur lors de la mise à jour du produit :', error);
+    throw error;
   }
+
+  return data as Product;
 }
 
 export async function deleteProduct(id: number): Promise<void> {
